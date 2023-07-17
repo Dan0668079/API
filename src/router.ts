@@ -1,18 +1,16 @@
 import { Router } from "express"; //!começar im portando o router do meu express
+import { createCategory } from "./app/useCases/categories/createCategory";
+import { lisCategories } from "./app/useCases/categories/listCategories";
 
 export const router = Router(); //! exportar as minhas rotas
 
 //? List category
 //!usando o rest
-router.get("/categories", (req, res) => {
-  //? get pegar o item especifico  edpoint que é o nome da rota categories sempre no plural, vamos receber do express o objetot de request req que onde eu vou receber as informações de quem esta fazendo as requisições e o objeto de response que é aonde eu tenho por exemplo o método send que é para quando eu quero enviar uma informação de volta para quem fez a request
-  res.send("OK");
-});
-//? Create category
-router.post("/categories", (req, res) => {
-  //? para criar uma categoria a gente vai precisar receber informações de quem esta fazendo esta requisição então usamos o metodo post ou seja inserindo um novo registro
-  res.send("OK");
-});
+router.get("/categories", lisCategories);
+
+router.post("/categories", createCategory);
+//? para criar uma categoria a gente vai precisar receber informações de quem esta fazendo esta requisição então usamos o metodo post ou seja inserindo um novo registro
+
 //? List products
 router.get("/products", (req, res) => {
   res.send("OK");
